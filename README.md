@@ -127,6 +127,10 @@ Ikuti langkah-langkah ini untuk menjalankan proyek di mesin lokal Anda.
   
 
 
+
+
+
+
 # 🤖 AI Video Assistant (Local RAG Version)
 
 This project is an advanced AI assistant that runs entirely on your computer (self-hosted). The application can index video content and answer natural language questions about its contents. It is built using a **Retrieval-Augmented Generation (RAG)** architecture, leveraging state-of-the-art open-source models from Hugging Face, including the **Llama 3 Large Language Model (LLM)**, to provide a completely private, free, and GPU-accelerated Q&A experience.
