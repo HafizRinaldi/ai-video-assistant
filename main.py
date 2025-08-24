@@ -73,7 +73,6 @@ async def query_video(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Gagal menghasilkan jawaban: {e}")
 
-# --- ENDPOINT BARU UNTUK DOWNLOAD TRANSKRIP ---
 @app.get("/get-transcript/{video_id}", summary="Download Transkrip Lengkap")
 async def get_transcript(video_id: str):
     """
@@ -88,3 +87,4 @@ async def get_transcript(video_id: str):
         filename=f"transcript_{video_id}.txt", 
         media_type='text/plain'
     )
+
