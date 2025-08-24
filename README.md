@@ -21,7 +21,7 @@ Aplikasi ini memiliki antarmuka web modern yang dibangun dengan **FastAPI** dan 
 
 Berikut adalah pratinjau antarmuka pengguna aplikasi:
 
-<img src="main_page.png" width="200">)
+<img src="main_page.png">
 
 ---
 
