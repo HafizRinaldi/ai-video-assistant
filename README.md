@@ -21,7 +21,7 @@ Aplikasi ini memiliki antarmuka web modern yang dibangun dengan **FastAPI** dan 
 
 Berikut adalah pratinjau antarmuka pengguna aplikasi:
 
-![Pratinjau antarmuka pengguna aplikasi](https://raw.githubusercontent.com/NAMA_ANDA/asisten-video-ai/main/screenshots/dashboard.png)
+<img src="home_page.png" width="200">)
 
 ---
 
