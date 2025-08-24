@@ -6,7 +6,6 @@ import numpy as np
 from transformers import pipeline
 from sentence_transformers import SentenceTransformer
 
-# --- FUNGSI 1: EKSTRAK AUDIO DARI VIDEO ---
 def extract_audio_from_video(video_path: str, audio_path: str = "temp_audio.wav"):
     """
     Mengekstrak audio dari file video menggunakan ffmpeg dan menyimpannya sebagai file .wav.
@@ -25,7 +24,6 @@ def extract_audio_from_video(video_path: str, audio_path: str = "temp_audio.wav"
         print(f"Error saat mengekstrak audio: {e.stderr.decode()}")
         return None
 
-# --- FUNGSI 2: TRANSKRIPSI DENGAN TIMESTAMP ---
 def transcribe_with_timestamps(audio_path: str):
     """
     Mentranskripsikan audio menggunakan Whisper dan menghasilkan chunk dengan stempel waktu
@@ -42,10 +40,8 @@ def transcribe_with_timestamps(audio_path: str):
     
     result = pipe(audio_path, return_timestamps="word", chunk_length_s=30, stride_length_s=5)
     print("Transkripsi selesai.")
-    # Kembalikan chunks untuk RAG dan teks lengkap untuk diunduh
     return result['chunks'], result['text']
 
-# --- FUNGSI 3: BUAT POTONGAN TEKS (CHUNKS) ---
 def create_text_chunks(transcript_chunks, chunk_duration_seconds=60):
     """
     Mengelompokkan hasil transkripsi kata-demi-kata menjadi potongan teks yang lebih besar.
@@ -76,7 +72,6 @@ def create_text_chunks(transcript_chunks, chunk_duration_seconds=60):
     print(f"Berhasil membuat {len(chunks)} potongan teks.")
     return chunks
 
-# --- FUNGSI 4: BUAT & SIMPAN EMBEDDINGS ---
 def create_and_save_embeddings(text_chunks, video_id: str):
     """
     Membuat vector embeddings dan menyimpannya ke dalam indeks FAISS.
@@ -100,7 +95,6 @@ def create_and_save_embeddings(text_chunks, video_id: str):
         
     print(f"Embeddings dan data berhasil disimpan untuk video_id: {video_id}")
 
-# --- FUNGSI UTAMA UNTUK MENGGABUNGKAN SEMUA ---
 def process_and_index_video(video_path: str, video_id: str):
     """
     Menjalankan seluruh pipeline: ekstrak, transkripsi, chunking, dan embedding.
@@ -109,10 +103,8 @@ def process_and_index_video(video_path: str, video_id: str):
     if not audio_path:
         return
 
-    # Dapatkan chunks dan teks lengkap
     transcript_chunks, full_transcript = transcribe_with_timestamps(audio_path)
     
-    # Simpan transkrip lengkap ke file .txt
     with open(f"{video_id}.txt", "w", encoding="utf-8") as f:
         f.write(full_transcript)
     print(f"Transkrip lengkap disimpan ke {video_id}.txt")
@@ -122,4 +114,5 @@ def process_and_index_video(video_path: str, video_id: str):
     create_and_save_embeddings(text_chunks, video_id)
     
     print(f"\n🎉 Video '{video_id}' berhasil diindeks!")
+
 
